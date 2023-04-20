@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import data from "./data.js";
+import { Route, Routes } from "react-router-dom";
+import About from "./pages/About.js";
+import Home from "./pages/Home.js";
+import Dashboard from "./pages/Dashboard.js";
+import Navigation from "./components/Navigation.js";
+import IndividualStock from "./pages/IndividualStock.js";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation/>
+      <Routes>
+          <Route path="/" element={<Home/>}></Route>
+          <Route path="/stocks" element={<Dashboard props={data} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/IndividualStock/:id" element={<IndividualStock props={data}/>} />
+      </Routes>
+
     </div>
   );
 }
 
-export default App;
